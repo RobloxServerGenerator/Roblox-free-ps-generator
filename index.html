@@ -1,77 +1,98 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBLOX Private Server Generator</title>
+    <title>ROBLOX PRIVATE SERVER HUB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
         body { 
-            background: linear-gradient(135deg, #0f0000, #220000); 
+            background: linear-gradient(135deg, #0a0000, #1a001f, #000000);
             color: white; 
-            font-family: 'Segoe UI', sans-serif; 
-            overflow-x: hidden; 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
+        .title-font { font-family: 'Space Grotesk', sans-serif; }
+
         .bubble { 
             position: fixed; 
             border-radius: 50%; 
-            background: rgba(255, 60, 60, 0.18); 
-            backdrop-filter: blur(10px); 
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25), rgba(239, 68, 68, 0.15));
             z-index: -1; 
-            animation: float 16s linear infinite; 
+            animation: float 18s linear infinite;
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.4);
         }
         @keyframes float { 
-            from { transform: translateY(100vh); } 
-            to { transform: translateY(-250px); } 
+            from { transform: translateY(100vh) scale(0.8); } 
+            to { transform: translateY(-350px) scale(1.3); } 
         }
-        .game-card { 
-            transition: all 0.3s ease; 
+
+        .neon-text {
+            text-shadow: 0 0 10px #a855f7,
+                        0 0 20px #a855f7,
+                        0 0 40px #ef4444;
         }
-        .game-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 20px 40px rgba(255, 50, 50, 0.35); 
+
+        .game-card {
+            transition: all 0.4s ease;
+            background: rgba(15, 10, 25, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
-        .game-img { 
-            width: 100%; 
-            height: 90px; 
-            object-fit: cover; 
-            border-radius: 12px; 
+        .game-card:hover {
+            transform: translateY(-12px);
+            border-color: #c026d3;
+            box-shadow: 0 0 40px rgba(192, 38, 211, 0.5);
+        }
+
+        .game-img {
+            transition: all 0.5s ease;
+        }
+        .game-card:hover .game-img {
+            filter: brightness(1.15) saturate(1.3);
         }
     </style>
 </head>
 <body class="min-h-screen pb-20">
 
 <script>
-    // Bubble efekti
-    for(let i = 0; i < 30; i++) {  
+    for(let i = 0; i < 35; i++) {  
         let b = document.createElement("div");  
         b.className = "bubble";  
-        let size = Math.random() * 90 + 30;  
+        let size = Math.random() * 110 + 40;  
         b.style.width = size + "px";  
         b.style.height = size + "px";  
         b.style.left = Math.random() * 100 + "vw";  
-        b.style.animationDuration = (Math.random() * 15 + 12) + "s";  
+        b.style.animationDuration = (Math.random() * 22 + 16) + "s";  
         document.body.appendChild(b);  
     }  
 </script>
 
-<div class="max-w-6xl mx-auto px-5 pt-12">
-    <div class="text-center mb-12">
-        <h1 class="text-5xl md:text-6xl font-bold text-red-500 mb-2">ROBLOX PRIVATE SERVER GENERATOR</h1>
-        <p class="text-red-400 text-2xl">Trending & Popular Games</p>
+<div class="max-w-7xl mx-auto px-6 pt-12">
+    <div class="text-center mb-16">
+        <h1 class="text-6xl md:text-7xl font-bold title-font neon-text tracking-tighter mb-2">
+            ROBLOX
+        </h1>
+        <p class="text-3xl text-purple-400 font-medium">PRIVATE SERVER HUB</p>
+        <p class="text-zinc-400 mt-3">Neon • Cyber • Private Servers</p>
     </div>
 
-    <div class="bg-black/70 backdrop-blur-2xl border border-red-600/60 rounded-3xl p-8 shadow-2xl mb-16">
+    <div class="bg-black/70 backdrop-blur-3xl border border-purple-500/50 rounded-3xl p-8 shadow-2xl mb-16">
         <input id="search" type="text"   
-               class="w-full bg-zinc-950 border-2 border-red-500/70 focus:border-red-500 rounded-2xl px-7 py-6 text-xl outline-none"  
-               placeholder="Search game...">
-        <div id="results" class="mt-8 space-y-3"></div>
+               class="w-full bg-zinc-950 border-2 border-purple-500 focus:border-pink-500 rounded-2xl px-8 py-7 text-xl outline-none text-white placeholder-zinc-500"
+               placeholder="Search a game...">
+        <div id="results" class="mt-8 space-y-4"></div>
     </div>
 
-    <h2 class="text-4xl font-bold text-red-400 mb-8">Trending Games</h2>
-    <div id="all-games" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
+    <h2 class="text-4xl font-bold text-purple-400 mb-10 flex items-center gap-3">
+        <i class="fa-solid fa-bolt"></i>
+        TRENDING GAMES
+    </h2>
+    
+    <div id="all-games" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"></div>
 </div>
 
 <script>
@@ -166,7 +187,6 @@
     const resultsDiv = document.getElementById("results");
     const allGamesDiv = document.getElementById("all-games");
 
-    // Arama
     document.getElementById("search").addEventListener("input", e => {  
         const q = e.target.value.toLowerCase().trim();  
         resultsDiv.innerHTML = "";  
@@ -177,28 +197,27 @@
             const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
 
             const div = document.createElement("div");  
-            div.className = "flex justify-between items-center bg-zinc-900 border border-red-500/30 rounded-2xl p-4";  
+            div.className = "flex justify-between items-center bg-zinc-900 border border-purple-500/30 rounded-2xl p-5";
             div.innerHTML = `  
-                <span class="text-lg">${game.name}</span>  
-                <button onclick="copyLink('${link}', this)" class="copy-btn bg-red-600 hover:bg-red-500 px-6 py-3 rounded-xl">Copy</button>  
+                <span class="text-xl">${game.name}</span>  
+                <button onclick="copyLink('${link}', this)" class="bg-purple-600 hover:bg-pink-600 px-8 py-4 rounded-xl font-semibold">COPY</button>  
             `;  
             resultsDiv.appendChild(div);  
         });  
     });
 
-    // Tüm oyunlar
     games.forEach(game => {  
         const slug = game.name.replace(/\s+/g, "-").toLowerCase();
         const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
 
         const card = document.createElement("div");  
-        card.className = "game-card bg-zinc-900/90 border border-red-600/40 rounded-3xl overflow-hidden";  
+        card.className = "game-card rounded-3xl overflow-hidden";  
         card.innerHTML = `  
-            <img src="https://www.roblox.com/Thumbs/Asset.ashx?width=150&height=150&assetId=\( {game.id}" class="game-img" alt=" \){game.name}">
-            <div class="p-3 text-center">  
-                <div class="font-medium text-sm mb-3">${game.name}</div>  
-                <button onclick="copyLink('${link}', this)" class="copy-btn w-full bg-red-600 hover:bg-red-500 py-3 rounded-2xl text-sm font-semibold">Copy Link</button>  
-            </div>  
+            <img src="https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=230&assetId=${game.id}" class="game-img w-full h-48 object-cover">
+            <div class="p-5">
+                <div class="font-medium text-lg mb-4">${game.name}</div>
+                <button onclick="copyLink('${link}', this)" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 py-4 rounded-2xl font-bold">COPY PRIVATE LINK</button>
+            </div>
         `;  
         allGamesDiv.appendChild(card);  
     });
@@ -206,154 +225,12 @@
     window.copyLink = (link, btn) => {  
         navigator.clipboard.writeText(link);  
         const old = btn.textContent;  
-        btn.textContent = "✅ Copied!";  
-        btn.style.backgroundColor = "#22c55e";  
-        setTimeout(() => {   
-            btn.textContent = "Copy Link";   
-            btn.style.backgroundColor = "";   
-        }, 2000);  
-    };
-</script>
-
-</body>
-</html><script>
-    const games = [
-        {name:"Blox Fruits",id:"2753915549"},
-        {name:"Steal a Brainrot",id:"109983668079237"},
-        {name:"Brookhaven",id:"4022721310"},
-        {name:"Adopt Me",id:"920587238"},
-        {name:"Murder Mystery 2",id:"124259803"},
-        {name:"Pet Simulator 99",id:"8737899170"},
-        {name:"Dress to Impress",id:"6257876793"},
-        {name:"Blade Ball",id:"3737029677"},
-        {name:"RIVALS",id:"15674069502"},
-        {name:"The Strongest Battlegrounds",id:"10449761463"},
-        {name:"DOORS",id:"5992633403"},
-        {name:"Arsenal",id:"286090429"},
-        {name:"BedWars",id:"1428232918"},
-        {name:"Fisch",id:"16732694052"},
-        {name:"Jujutsu Shenanigans",id:"9391468976"},
-        {name:"Anime Vanguards",id:"16146832113"},
-        {name:"Anime Last Stand",id:"12886143095"},
-        {name:"Car Crushers 2",id:"3260590326"},
-        {name:"Build A Boat For Treasure",id:"1838764589"},
-        {name:"Evade",id:"2458763933"},
-        {name:"Pressure",id:"12411473842"},
-        {name:"Combat Warriors",id:"142857743"},
-        {name:"Untitled Boxing Game",id:"13621658434"},
-        {name:"Dandy's World",id:"16035052985"},
-        {name:"Slap Battles",id:"4456556936"},
-        {name:"Tower of Hell",id:"1962089868"},
-        {name:"Blue Lock Rivals",id:"17112001402"},
-        {name:"Dead Rails",id:"12423377227"},
-        {name:"Driving Empire",id:"2286149364"},
-        {name:"Royale High",id:"735030788"},
-        {name:"Welcome to Bloxburg",id:"185655665"},
-        {name:"Jailbreak",id:"3103019516"},
-        {name:"Mad City",id:"2113638876"},
-        {name:"Phantom Forces",id:"292439057"},
-        {name:"Counter Blox",id:"332113723"},
-        {name:"King Legacy",id:"4547472948"},
-        {name:"All Star Tower Defense",id:"342565219"},
-        {name:"Project Slayers",id:"4539261919"},
-        {name:"Sol's RNG",id:"15532979290"},
-        {name:"Break In",id:"3851622790"},
-        {name:"The Mimic",id:"4493678803"},
-        {name:"Regretevator",id:"4972273297"},
-        {name:"Bee Swarm Simulator",id:"153772865"},
-        {name:"Muscle Legends",id:"2761540112"},
-        {name:"Rainbow Friends",id:"4976658722"},
-        {name:"Piggy",id:"521421627"},
-        {name:"Survive the Killer",id:"4338582010"},
-        {name:"Work at a Pizza Place",id:"1840553776"},
-        {name:"MeepCity",id:"2556076078"},
-        {name:"Vehicle Legends",id:"4388294789"},
-        {name:"SharkBite",id:"2709837579"},
-        {name:"Lumber Tycoon 2",id:"1325623788"},
-        {name:"Da Hood",id:"2788225286"},
-        {name:"Criminality",id:"4185785461"},
-        {name:"The Hunt",id:"16536041029"},
-        {name:"Pet Simulator X",id:"6284583030"},
-        {name:"World // Zero",id:"5439320871"},
-        {name:"Shinobi Life 2",id:"3956818381"},
-        {name:"Rebirth Champions X",id:"8415171729"},
-        {name:"Sword Fighters Simulator",id:"11504958190"},
-        {name:"Legends Re:Written",id:"6473130129"},
-        {name:"Peroxide",id:"2702415731"},
-        {name:"Astral Isles",id:"11077651034"},
-        {name:"Skywars",id:"3514427813"},
-        {name:"Egg Hunt",id:"1586492918"},
-        {name:"Super Golf",id:"1135276557"},
-        {name:"Basketball Legends",id:"774365677"},
-        {name:"Football Fusion",id:"3153852815"},
-        {name:"Hotel Tycoon",id:"2680208187"},
-        {name:"Mall Tycoon",id:"2756955530"},
-        {name:"Escape the Facility",id:"1279090623"},
-        {name:"Flee the Facility",id:"890822890"},
-        {name:"The Rake",id:"2415842880"},
-        {name:"Siren Head",id:"5114175397"},
-        {name:"Nico's Nextbots",id:"2753934793"},
-        {name:"Banana Eats",id:"3008664294"},
-        {name:"Hide or Die",id:"15603770154"},
-        {name:"War Tycoon",id:"7252063073"},
-        {name:"Military Simulator",id:"5334312621"},
-        {name:"Airplane Simulator",id:"2033006882"},
-        {name:"Car Dealership Tycoon",id:"2654549826"},
-        {name:"Plane Crazy",id:"392063553"},
-        {name:"Ultimate Driving",id:"4278045408"},
-        {name:"Emergency Response",id:"3427879874"},
-        {name:"Liberty County",id:"2878929219"}
-    ];
-
-    const resultsDiv = document.getElementById("results");
-    const allGamesDiv = document.getElementById("all-games");
-
-    // Arama fonksiyonu
-    document.getElementById("search").addEventListener("input", e => {  
-        const q = e.target.value.toLowerCase().trim();  
-        resultsDiv.innerHTML = "";  
-        if (q.length < 2) return;  
-
-        games.filter(g => g.name.toLowerCase().includes(q)).forEach(game => {  
-            const slug = game.name.replace(/\s+/g, "-").toLowerCase();
-            const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
-
-            const div = document.createElement("div");  
-            div.className = "flex justify-between items-center bg-zinc-900 border border-red-500/30 rounded-2xl p-4";  
-            div.innerHTML = `  
-                <span class="text-lg">${game.name}</span>  
-                <button onclick="copyLink('${link}', this)" class="copy-btn bg-red-600 hover:bg-red-500 px-6 py-3 rounded-xl">Copy</button>  
-            `;  
-            resultsDiv.appendChild(div);  
-        });  
-    });
-
-    // Tüm oyun kartları
-    games.forEach(game => {  
-        const slug = game.name.replace(/\s+/g, "-").toLowerCase();
-        const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
-
-        const card = document.createElement("div");  
-        card.className = "game-card bg-zinc-900/90 border border-red-600/40 rounded-3xl overflow-hidden";  
-        card.innerHTML = `  
-            <img src="https://www.roblox.com/Thumbs/Asset.ashx?width=150&height=150&assetId=\( {game.id}" class="game-img" alt=" \){game.name}">
-            <div class="p-3 text-center">  
-                <div class="font-medium text-sm mb-3 line-clamp-2">${game.name}</div>  
-                <button onclick="copyLink('${link}', this)" class="copy-btn w-full bg-red-600 hover:bg-red-500 py-3 rounded-2xl text-sm font-semibold">Copy Link</button>  
-            </div>  
-        `;  
-        allGamesDiv.appendChild(card);  
-    });
-
-    window.copyLink = (link, btn) => {  
-        navigator.clipboard.writeText(link);  
-        const old = btn.textContent;  
-        btn.textContent = "Copied!";  
+        btn.textContent = "✓ COPIED";  
         btn.style.backgroundColor = "#22c55e";  
         setTimeout(() => {   
             btn.textContent = old;   
             btn.style.backgroundColor = "";   
-        }, 1500);  
+        }, 1800);  
     };
 </script>
 
