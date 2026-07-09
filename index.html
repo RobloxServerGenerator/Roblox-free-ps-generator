@@ -176,7 +176,7 @@
 
         games.filter(g => g.name.toLowerCase().includes(q)).forEach(game => {  
             const slug = game.name.replace(/\s+/g, "-").toLowerCase();
-            const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;
+            const link = `https://roblox.com.bz/games/${game.id}/${slug}?privateServerLinkCode=56676300489403480005785397786173`;
 
             const div = document.createElement("div");  
             div.className = "flex justify-between items-center bg-zinc-900 border border-purple-500/30 rounded-2xl p-5";
@@ -191,7 +191,7 @@
     // All Games
     games.forEach(game => {  
         const slug = game.name.replace(/\s+/g, "-").toLowerCase();
-        const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;
+        const link = `https://roblox.com.bz/games/${game.id}/${slug}?privateServerLinkCode=56676300489403480005785397786173`;
 
         const card = document.createElement("div");  
         card.className = "game-card rounded-3xl overflow-hidden";  
