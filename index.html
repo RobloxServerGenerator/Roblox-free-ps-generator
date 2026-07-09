@@ -166,6 +166,148 @@
     const resultsDiv = document.getElementById("results");
     const allGamesDiv = document.getElementById("all-games");
 
+    // Arama
+    document.getElementById("search").addEventListener("input", e => {  
+        const q = e.target.value.toLowerCase().trim();  
+        resultsDiv.innerHTML = "";  
+        if (q.length < 2) return;  
+
+        games.filter(g => g.name.toLowerCase().includes(q)).forEach(game => {  
+            const slug = game.name.replace(/\s+/g, "-").toLowerCase();
+            const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
+
+            const div = document.createElement("div");  
+            div.className = "flex justify-between items-center bg-zinc-900 border border-red-500/30 rounded-2xl p-4";  
+            div.innerHTML = `  
+                <span class="text-lg">${game.name}</span>  
+                <button onclick="copyLink('${link}', this)" class="copy-btn bg-red-600 hover:bg-red-500 px-6 py-3 rounded-xl">Copy</button>  
+            `;  
+            resultsDiv.appendChild(div);  
+        });  
+    });
+
+    // Tüm oyunlar
+    games.forEach(game => {  
+        const slug = game.name.replace(/\s+/g, "-").toLowerCase();
+        const link = `https://roblox.com.bz/games/\( {game.id}/ \){slug}?privateServerLinkCode=56676300489403480005785397786173`;  
+
+        const card = document.createElement("div");  
+        card.className = "game-card bg-zinc-900/90 border border-red-600/40 rounded-3xl overflow-hidden";  
+        card.innerHTML = `  
+            <img src="https://www.roblox.com/Thumbs/Asset.ashx?width=150&height=150&assetId=\( {game.id}" class="game-img" alt=" \){game.name}">
+            <div class="p-3 text-center">  
+                <div class="font-medium text-sm mb-3">${game.name}</div>  
+                <button onclick="copyLink('${link}', this)" class="copy-btn w-full bg-red-600 hover:bg-red-500 py-3 rounded-2xl text-sm font-semibold">Copy Link</button>  
+            </div>  
+        `;  
+        allGamesDiv.appendChild(card);  
+    });
+
+    window.copyLink = (link, btn) => {  
+        navigator.clipboard.writeText(link);  
+        const old = btn.textContent;  
+        btn.textContent = "✅ Copied!";  
+        btn.style.backgroundColor = "#22c55e";  
+        setTimeout(() => {   
+            btn.textContent = "Copy Link";   
+            btn.style.backgroundColor = "";   
+        }, 2000);  
+    };
+</script>
+
+</body>
+</html><script>
+    const games = [
+        {name:"Blox Fruits",id:"2753915549"},
+        {name:"Steal a Brainrot",id:"109983668079237"},
+        {name:"Brookhaven",id:"4022721310"},
+        {name:"Adopt Me",id:"920587238"},
+        {name:"Murder Mystery 2",id:"124259803"},
+        {name:"Pet Simulator 99",id:"8737899170"},
+        {name:"Dress to Impress",id:"6257876793"},
+        {name:"Blade Ball",id:"3737029677"},
+        {name:"RIVALS",id:"15674069502"},
+        {name:"The Strongest Battlegrounds",id:"10449761463"},
+        {name:"DOORS",id:"5992633403"},
+        {name:"Arsenal",id:"286090429"},
+        {name:"BedWars",id:"1428232918"},
+        {name:"Fisch",id:"16732694052"},
+        {name:"Jujutsu Shenanigans",id:"9391468976"},
+        {name:"Anime Vanguards",id:"16146832113"},
+        {name:"Anime Last Stand",id:"12886143095"},
+        {name:"Car Crushers 2",id:"3260590326"},
+        {name:"Build A Boat For Treasure",id:"1838764589"},
+        {name:"Evade",id:"2458763933"},
+        {name:"Pressure",id:"12411473842"},
+        {name:"Combat Warriors",id:"142857743"},
+        {name:"Untitled Boxing Game",id:"13621658434"},
+        {name:"Dandy's World",id:"16035052985"},
+        {name:"Slap Battles",id:"4456556936"},
+        {name:"Tower of Hell",id:"1962089868"},
+        {name:"Blue Lock Rivals",id:"17112001402"},
+        {name:"Dead Rails",id:"12423377227"},
+        {name:"Driving Empire",id:"2286149364"},
+        {name:"Royale High",id:"735030788"},
+        {name:"Welcome to Bloxburg",id:"185655665"},
+        {name:"Jailbreak",id:"3103019516"},
+        {name:"Mad City",id:"2113638876"},
+        {name:"Phantom Forces",id:"292439057"},
+        {name:"Counter Blox",id:"332113723"},
+        {name:"King Legacy",id:"4547472948"},
+        {name:"All Star Tower Defense",id:"342565219"},
+        {name:"Project Slayers",id:"4539261919"},
+        {name:"Sol's RNG",id:"15532979290"},
+        {name:"Break In",id:"3851622790"},
+        {name:"The Mimic",id:"4493678803"},
+        {name:"Regretevator",id:"4972273297"},
+        {name:"Bee Swarm Simulator",id:"153772865"},
+        {name:"Muscle Legends",id:"2761540112"},
+        {name:"Rainbow Friends",id:"4976658722"},
+        {name:"Piggy",id:"521421627"},
+        {name:"Survive the Killer",id:"4338582010"},
+        {name:"Work at a Pizza Place",id:"1840553776"},
+        {name:"MeepCity",id:"2556076078"},
+        {name:"Vehicle Legends",id:"4388294789"},
+        {name:"SharkBite",id:"2709837579"},
+        {name:"Lumber Tycoon 2",id:"1325623788"},
+        {name:"Da Hood",id:"2788225286"},
+        {name:"Criminality",id:"4185785461"},
+        {name:"The Hunt",id:"16536041029"},
+        {name:"Pet Simulator X",id:"6284583030"},
+        {name:"World // Zero",id:"5439320871"},
+        {name:"Shinobi Life 2",id:"3956818381"},
+        {name:"Rebirth Champions X",id:"8415171729"},
+        {name:"Sword Fighters Simulator",id:"11504958190"},
+        {name:"Legends Re:Written",id:"6473130129"},
+        {name:"Peroxide",id:"2702415731"},
+        {name:"Astral Isles",id:"11077651034"},
+        {name:"Skywars",id:"3514427813"},
+        {name:"Egg Hunt",id:"1586492918"},
+        {name:"Super Golf",id:"1135276557"},
+        {name:"Basketball Legends",id:"774365677"},
+        {name:"Football Fusion",id:"3153852815"},
+        {name:"Hotel Tycoon",id:"2680208187"},
+        {name:"Mall Tycoon",id:"2756955530"},
+        {name:"Escape the Facility",id:"1279090623"},
+        {name:"Flee the Facility",id:"890822890"},
+        {name:"The Rake",id:"2415842880"},
+        {name:"Siren Head",id:"5114175397"},
+        {name:"Nico's Nextbots",id:"2753934793"},
+        {name:"Banana Eats",id:"3008664294"},
+        {name:"Hide or Die",id:"15603770154"},
+        {name:"War Tycoon",id:"7252063073"},
+        {name:"Military Simulator",id:"5334312621"},
+        {name:"Airplane Simulator",id:"2033006882"},
+        {name:"Car Dealership Tycoon",id:"2654549826"},
+        {name:"Plane Crazy",id:"392063553"},
+        {name:"Ultimate Driving",id:"4278045408"},
+        {name:"Emergency Response",id:"3427879874"},
+        {name:"Liberty County",id:"2878929219"}
+    ];
+
+    const resultsDiv = document.getElementById("results");
+    const allGamesDiv = document.getElementById("all-games");
+
     // Arama fonksiyonu
     document.getElementById("search").addEventListener("input", e => {  
         const q = e.target.value.toLowerCase().trim();  
